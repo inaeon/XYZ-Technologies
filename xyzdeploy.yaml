@@ -1,0 +1,21 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: xyz-project-deploy
+spec:
+  selector:
+    matchLabels:
+      app: xyz-webapp
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: xyz-webapp
+    spec:
+      containers:
+        - name: xyz-app
+          image: "$IMAGE_NAME:$BUILD_NUMBER"
+          ports:
+            - containerPort: 8080
+
